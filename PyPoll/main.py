@@ -1,8 +1,10 @@
-#PyPoll notes
+# python-challenge -- PyPoll
+
+# Import Modules
 import os
 import csv
 
-#read csv file
+# Read csv file
 PyPoll_Data = os.path.join("./Unit03 - Python_Homework_PyPoll_Resources_election_data.csv")
 
 with open(PyPoll_Data) as csvfile:
@@ -11,48 +13,40 @@ with open(PyPoll_Data) as csvfile:
     csv_header = next(csvfile)
     #print(f"Header: {csv_header}")
 
-#define variables and lists
+# Define variables, lists, and dictionaries
     vote_counter = 0
     all_candidates = []
     candidate_vote_totals = {}
     candidate_percent_totals = {}
     percent = float
 
-    # insert a for loop to count number of rows
-    # number of rows will = total number of votes cast
+    # Insert a for loop to count number of rows
+    # Number of rows will = total number of votes cast
     for row in csvreader:
         vote_counter += 1
 
-    # assign a variable to hold the loop
+    # Assign a variable to the candidate name
+    # Give an index so that when it loops, that location can be stored
         candidate_name = row[2]
-        # if the candidate's name has not yet appeared, it will be added to the list
+        # If the candidate's name has not yet appeared, it will be added to the list
         if candidate_name not in all_candidates:
             all_candidates.append(candidate_name)
-            
+            # As candidates are added to this list, they are added
+            # to a dictionary that holds {candidate name: candidate votes}
             candidate_vote_totals[candidate_name] = 1
 
         else: 
-            # if it has been added to the list, add to their vote total
+            # When a candidate receives another vote, this gets added to their total
             candidate_vote_totals[candidate_name] = candidate_vote_totals[candidate_name] + 1
 
+    # To calculate the percentage of votes:
+    # The loop will then capture the value of the individual's vote by
+    # their key; then this value is divided by the total amount of votes
     for key, value in candidate_vote_totals.items():
         percent = value / vote_counter
 
-        candidate_percent_totals.update({key: str(percent)})
+        candidate_percent_totals.update({key: str("{:.3%}".format(percent))})
 
-    #for candidate_name = row[2]
-        #if candidate_name not in all_candidates:
-
-
-
-
-    # calculate the percentage of votes by
-    # taking vote count total and dividing by
-    # the value inside of each dictionary
-    #percentage_per_candidate = {k: v / total for total in (sum(a.values()),) for k, v in a.items()}
-
-# Calculate the percentage each candidate received
-# Split the dictionary in order to gain 
 
 # Calculate the winner
 # https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary
@@ -63,6 +57,6 @@ max(candidate_vote_totals, key=lambda key: candidate_vote_totals[key])
 print("Election Results")
 print("------------------------")
 print("Total Votes: " + str(vote_counter))
-print(candidate_vote_totals)
+print("The number of votes each candidate received was: " + str(candidate_vote_totals))
+print("The percentage of votes each candidate received was: " + str(candidate_percent_totals)) #str("{:.1%}".format(0.88)
 print("Winner: " + str(max(candidate_vote_totals, key=lambda key: candidate_vote_totals[key])))
-print(candidate_percent_totals)
