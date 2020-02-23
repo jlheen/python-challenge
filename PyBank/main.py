@@ -1,3 +1,5 @@
+# python-challenge -- PyBank
+
 # Import Modules
 import os
 import csv
@@ -60,7 +62,6 @@ mean(profit_changes)
 
 # Create a dictionary to hold the dates and amounts of the changes in profit
 # In order to do so, need to add a zero to correspond with first month in the profit_changes list
-# list.insert(index, elem) -- inserts the element at the given index, shifting elements to the right
 # https://www.geeksforgeeks.org/python-list-insert/
 profit_changes.insert(0, 0)
 
@@ -88,3 +89,8 @@ print("Average Change: $" + str(mean(profit_changes)))
 #print(str(max(date_and_profits, key=lambda key: date_and_profits[key]) 
 print("Greatest Increase in Profits: " + str(max(date_and_profits.items(), key=lambda k: k[1])))
 print("Greatest Decrease in Profits: " + str(min(date_and_profits.items(), key=lambda k: k[1])))
+
+# Export the results to a text file
+f= open("text_text2.txt", "w+")
+f.write("Total Months " + str(total_months) + " Total $" + str(net_total) + " Average Change: " + str(mean(profit_changes)) + "Greatest Increase in Profits: " + str(max(date_and_profits.items(), key=lambda k: k[1])) + "Greatest Decrease in Profits: " + str(min(date_and_profits.items(), key=lambda k: k[1])))
+f.close()
