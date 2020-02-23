@@ -11,7 +11,6 @@ with open(PyPoll_Data) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     # Skip the header row
     csv_header = next(csvfile)
-    #print(f"Header: {csv_header}")
 
 # Define variables, lists, and dictionaries
     vote_counter = 0
@@ -58,5 +57,11 @@ print("Election Results")
 print("------------------------")
 print("Total Votes: " + str(vote_counter))
 print("The number of votes each candidate received was: " + str(candidate_vote_totals))
-print("The percentage of votes each candidate received was: " + str(candidate_percent_totals)) #str("{:.1%}".format(0.88)
+print("The percentage of votes each candidate received was: " + str(candidate_percent_totals)) 
 print("Winner: " + str(max(candidate_vote_totals, key=lambda key: candidate_vote_totals[key])))
+
+# Export the results to a text file
+# Export the results to a text file
+f= open("Election_Results.txt", "w+")
+f.write("Election Results --- Total Votes: " + str(vote_counter) + " The number of votes each candidate received was: " + str(candidate_vote_totals) + " The percentage of votes each candidate received was: " + str(candidate_percent_totals) + " The Winner: " + str(max(candidate_vote_totals, key=lambda key: candidate_vote_totals[key])))
+f.close()
