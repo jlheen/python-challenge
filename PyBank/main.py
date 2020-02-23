@@ -15,9 +15,6 @@ date_and_profits = {}
 total_months = float
 net_total = float
 
-#Your task is to create a Python script that analyzes the records to calculate each of the following:
-## ensure that the directory matches the git
-
 # Reading the CSV File
 #--------------------------------------
 
@@ -86,11 +83,10 @@ print("------------------------")
 print("Total Months: " + str(total_months))
 print("Total: $" + str(net_total)) 
 print("Average Change: $" + str(mean(profit_changes)))
-#print(str(max(date_and_profits, key=lambda key: date_and_profits[key]) 
 print("Greatest Increase in Profits: " + str(max(date_and_profits.items(), key=lambda k: k[1])))
 print("Greatest Decrease in Profits: " + str(min(date_and_profits.items(), key=lambda k: k[1])))
 
 # Export the results to a text file
-f= open("text_text2.txt", "w+")
-f.write("Total Months " + str(total_months) + " Total $" + str(net_total) + " Average Change: " + str(mean(profit_changes)) + "Greatest Increase in Profits: " + str(max(date_and_profits.items(), key=lambda k: k[1])) + "Greatest Decrease in Profits: " + str(min(date_and_profits.items(), key=lambda k: k[1])))
+f= open("Financial_Analysis.txt", "w+")
+f.write("Financial Analysis --- Total Months: " + str(total_months) + " Total: $" + str(net_total) + " Average Change: " + str(mean(profit_changes)) + "Greatest Increase in Profits: " + str(max(date_and_profits.items(), key=lambda k: k[1])) + "Greatest Decrease in Profits: " + str(min(date_and_profits.items(), key=lambda k: k[1])))
 f.close()
